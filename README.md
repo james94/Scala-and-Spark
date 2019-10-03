@@ -2,7 +2,6 @@
 Use Scala and Spark to Analyze Big Data
 
 ## Projects
----
 
 ### Run Scala Spark Apps via Terminal
 
