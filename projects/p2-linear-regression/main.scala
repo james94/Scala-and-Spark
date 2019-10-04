@@ -53,7 +53,8 @@ import org.apache.spark.ml.linalg.Vectors
 // Rename the Yearly Amount Spent Column as "label"
 // Also grab only the numerical columns from the data
 // Set all of this as a new dataframe called df
-val df = data.select(data("Yearly Amount Spent").as("label"),$"Avg Session Length",$"Time on App",$"Time on Website",$"Length of Membership",$"Yearly Amount Spent")
+val df = (data.select(data("Yearly Amount Spent").as("label"),$"Avg Session Length",
+          $"Time on App",$"Time on Website",$"Length of Membership"))
 
 // An assembler converts the input values to a vector
 // A vector is what the ML algorithm reads to train a model
@@ -63,7 +64,7 @@ val df = data.select(data("Yearly Amount Spent").as("label"),$"Avg Session Lengt
 // to a single output column of an array called "features"
 // Set the input columns from which we are supposed to read the values.
 // Call this new object assembler
-val assembler = new VectorAssembler().setInputCols(Array("Avg Session Length","Time on App","Time on Website","Length of Membership","Yearly Amount Spent")).setOutputCol("features")
+val assembler = new VectorAssembler().setInputCols(Array("Avg Session Length","Time on App","Time on Website","Length of Membership")).setOutputCol("features")
 
 // Use the assembler to transform our DataFrame to the two columns: label and features
 val output = assembler.transform(df).select($"label",$"features")
@@ -86,8 +87,18 @@ val trainingSummary = lrModel.summary
 // Residuals is difference between label and prediction
 trainingSummary.residuals.show()
 
+// 9.9 rmse
 println(s"RMSE: ${trainingSummary.rootMeanSquaredError}")
+// 98.4 mse
 println(s"MSE: ${trainingSummary.meanSquaredError}")
+// explain 98% of the variance 
 println(s"R^2: ${trainingSummary.r2}")
+
+// this is a pretty good model
+// we don't know how well this model will perform on data it hasnt seen yet
+// given the fact that it is doing a nice explanation of variance with 0.98 as its r^2
+// this should be a pretty good model for this data
+// and since this is artificial data, I can give a verification right now
+// this data is easy to fit to with a simple linear regression
 
 // Great Job!
