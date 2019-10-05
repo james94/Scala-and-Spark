@@ -173,8 +173,10 @@ val pca = (new PCA()
 val pcaDF = pca.transform(scaledData)
 
 // Show the new pcaFeatures
+val result = pcaDF.select("pcaFeatures")
+result.show()
 
 // Use .head() to confirm that your output column Array of pcaFeatures
 // only has 4 principal components
-val result = pcaDF.select("pcaFeatures")
+
 result.head()

@@ -61,4 +61,11 @@ You are to transform a dataset with 30 features into a dataset with fewer princi
 
 Often it is a good idea to normalize each feature to have the unit standard deviation and or zero mean when using principle analysis. It is a prerequisite step. Look at ML feature documentation. Figure out how you can use StandardScalar to standardize the cancer dataset.
 
+PCAs simple todo once you have understanding of ml.feature objects
+
+set input col to be features, do some transformation with the output col, fit, transform, etc
+
 [p5-pca/main.scala](projects/p5-pca/main.scala)
+
+### P6. Recommendation System
+
