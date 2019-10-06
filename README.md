@@ -2,6 +2,10 @@
 
 Use Scala and Spark to Analyze Big Data using MLib, SQL and DataFrames.
 
+## Certificate of Udemy Course Completion
+
+[Scala and Spark Course Certificate](medel-scala-and-spark-UC-4T63CYNN.jpg)
+
 ## Projects
 
 ### Run Scala Spark Apps via Terminal
