@@ -1,5 +1,6 @@
-# Scala-and-Spark
-Use Scala and Spark to Analyze Big Data
+# Scala and Spark for Machine Learning
+
+Use Scala and Spark to Analyze Big Data using MLib, SQL and DataFrames.
 
 ## Projects
 
@@ -43,29 +44,26 @@ Given a data set containing customer information for an ecommerce company, I cre
 
 ### P3. Logistic Regression
 
+Given a data set containing fake advertising data set, indicating whether or not a particular internet user clicked on an Advertisement, I created a model that predicts whether or not a user will click on an ad based off the features of that user.
+
 [p3-logistic-regression/main.scala](projects/p3-logistic-regression/main.scala)
 
 ### P4. Clustering
 
-The _situation_ was I was given portuguese wholesale customers data set from [UC Irvine's machine learning data set repository](http://archive.ics.uci.edu/ml/datasets/Wholesale+customers). This data set includes annual spending on specific product categories. My _task_ was to cluster the clients into at least 3 regions based off of the sales of some sort of product categories. My _actions_ included creating a **SparkSession**, **extracting** the Wholesale Customers csv data, **transforming** the feature data columns into a single column array, **loading** that data into the [kmeans model](https://spark.apache.org/docs/latest/ml-clustering.html#k-means) to train it and **evaluating** the model using Within Set Sum of Squared Errors. The _result_ with K = 3 clusters was the error = 8.0951. I noticed as I increased K, the error decreased by 1 until K = 6 clusters, then there was not a huge change in error. Thus, the lowest error = 4.8 when K = 6.
+The _situation_ was I was given [Wholesale customers Data Set](http://archive.ics.uci.edu/ml/datasets/Wholesale+customers) from [UC Irvine's machine learning data set repository](https://archive.ics.uci.edu/ml/index.php). This data set includes annual spending on specific product categories. My _task_ was to cluster the clients into at least 3 regions based off of the sales of some sort of product categories. My _actions_ included **extracting** the Wholesale Customers csv data, **transforming** the feature data columns into a single column array, **loading** that data into the [kmeans model](https://spark.apache.org/docs/latest/ml-clustering.html#k-means) to train it and **evaluating** the model using Within Set Sum of Squared Errors. The _result_ with K = 3 clusters was the error = 8.0951. I noticed as I increased K, the error decreased by 1 until K = 6 clusters, then there was not a huge change in error. Thus, the lowest error = 4.8 when K = 6.
 
 [p4-clustering/main.scala](projects/p4-clustering/main.scala)
 
 ### P5. PCA
 
-Breast Cancer Wisconsin (Diagnostic) Database
-
-569 instances of data
-
-You are to transform a dataset with 30 features into a dataset with fewer principle components. Keep in mind there are some parts to this project that we haven't shown because part of this project is to discover how to do something on your own by reading through the documentation. 30 numeric attributes about cancer and tumors. Figure out how to use normalization to standardize the data.
-
-Often it is a good idea to normalize each feature to have the unit standard deviation and or zero mean when using principle analysis. It is a prerequisite step. Look at ML feature documentation. Figure out how you can use StandardScalar to standardize the cancer dataset.
-
-PCAs simple todo once you have understanding of ml.feature objects
-
-set input col to be features, do some transformation with the output col, fit, transform, etc
+The _situation_ was I was given a [Breast Cancer Wisconsin (Diagnostic) Data Set](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)) from [UC Irvine's machine learning data set repository](https://archive.ics.uci.edu/ml/index.php). My _task_ was to transform a dataset with 30 features into a dataset with fewer principle components. My _actions_ included **extracting** the Cancer_Data, **transforming** the 30 columns of feature data into a single column array with all those features, **normalizing** the data to have unit standard deviation as a pre-step for Principle Component Analysis (PCA) and **loading** that data into PCA object to transform the 30 scaled features array into 4 principle components. The _result_ was there was only 4 principle components.
 
 [p5-pca/main.scala](projects/p5-pca/main.scala)
 
 ### P6. Recommendation System
 
+Prerequisite: Have a Cluster Set Up on Databricks Platform or Cloudera Platform on a Cloud Service of your choice. Have uploaded the movie_ratings data to the cluster. Have created a Databricks notebook, Jupyter Notebook or Zeppelin notebook for writing the Spark code.
+
+The _situation_, I was given a movie ratings data set from [GroupLens research at MovieLens](https://grouplens.org/datasets/movielens/) website. This dataset includes movie ratings by users. My _task_ was to implement a full recommendation system on a real cluster on the [databricks platform](https://databricks.com/try-databricks?utm_campaign=701610000008nLSAAY&gclid=Cj0KCQjwoebsBRCHARIsAC3JP0LFmdgFTNQi478tmPyhRe75tFyaRlJdMhnQ-d5Ap9celtB_SyIDUiIaAnGsEALw_wcB). My _actions_ included setting up the databricks community edition platform as a single node cluster, uploading the movie_ratings.csv small dataset to this cluster, creating a databricks notebook to write a Scala Spark collaborative filtering based recommendation system application. My Spark code included **extracting** the movie_rating csv data, **transforming** the movie data by splitting up 80% for training and 20% for testing the model, **loading** the training data into the [Alternating Least Squares (ALS) model](https://spark.apache.org/docs/latest/ml-collaborative-filtering.html) to train it and **evaluating** the model to see on average how far off our movie prediction rating is from our actual rating. The _result_ is on average, the ALS model's prediction is 84% off from the actual rating. So, the model is off by a little less than 1 star, which is decent.
+
+[p6-recommendation-system/main.scala](projects/p6-recommendation-system/main.scala)
